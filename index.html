@@ -22,13 +22,13 @@
     <link rel="stylesheet" href="./css/app.css" />
   </head>
   <body>
-    <div class="wrapper">
+    <div id="canvas" class="wrapper">
       <main>
         <h3 class="heading">We're launching soon</h3>
         <div class="time">
           <div class="time-item">
             <div class="time-box">
-              <p>08</p>
+              <p id="days"></p>
               <div class="line"></div>
               <div class="shadow left-shadow"></div>
               <div class="right-shadow shadow"></div>
@@ -37,7 +37,7 @@
           </div>
           <div class="time-item">
             <div class="time-box">
-              <p>23</p>
+              <p id="hours"></p>
               <div class="line"></div>
               <div class="shadow left-shadow"></div>
               <div class="right-shadow shadow"></div>
@@ -46,7 +46,7 @@
           </div>
           <div class="time-item">
             <div class="time-box">
-              <p>55</p>
+              <p id="minutes"></p>
               <div class="line"></div>
               <div class="shadow left-shadow"></div>
               <div class="right-shadow shadow"></div>
@@ -55,7 +55,7 @@
           </div>
           <div class="time-item">
             <div class="time-box">
-              <p>41</p>
+              <p id="seconds"></p>
               <div class="line"></div>
               <div class="shadow left-shadow"></div>
               <div class="right-shadow shadow"></div>
@@ -74,3 +74,37 @@
     </div>
   </body>
 </html>
+<script>
+  const countDownDate = new Date("aug 8, 2024 22:05:00").getTime();
+  const callBack = (item, value) => {
+    document.getElementById(item).innerHTML = value.toString().padStart(2, "0");
+  };
+  const x = setInterval(function () {
+    // Get today's date and time
+    const now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    const distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Output the result in an element with id="demo"
+    callBack("days", days);
+    callBack("hours", hours);
+    callBack("minutes", minutes);
+    callBack("seconds", seconds);
+    // If the count down is over, write some text
+    if (distance < 0) {
+      clearInterval(x);
+      callBack("days", "00");
+      callBack("hours", "00");
+      callBack("minutes", "00");
+      callBack("seconds", "00");
+    }
+  }, 1000);
+</script>

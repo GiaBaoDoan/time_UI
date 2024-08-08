@@ -14,6 +14,10 @@ body {
     background: url('../images/bg-stars.svg');
     background-color: $very-dark-blue;
 }
+.canvas {
+    cursor: crosshair;
+    position: fixed;
+}
 .wrapper {  
     display: flex;
     align-items: center;
@@ -36,6 +40,7 @@ body {
         display: flex;
         justify-content: center;
         &-item {
+            width: 150px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -48,6 +53,7 @@ body {
             }
         }
         &-box {
+            width: 100%;
             padding: 20px;
             background-color: $dark-desaturated-blue;
             border-radius: 10px;
